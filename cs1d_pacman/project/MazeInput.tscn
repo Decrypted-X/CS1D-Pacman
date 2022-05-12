@@ -1,0 +1,98 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://gdnative/mazeinput.gdns" type="Script" id=1]
+
+[sub_resource type="DynamicFontData" id=8]
+font_path = "res://fonts/crackman.ttf"
+
+[sub_resource type="DynamicFont" id=4]
+size = 60
+font_data = SubResource( 8 )
+
+[sub_resource type="DynamicFontData" id=9]
+font_path = "res://fonts/crackman.ttf"
+
+[sub_resource type="DynamicFont" id=5]
+size = 45
+font_data = SubResource( 9 )
+
+[sub_resource type="DynamicFontData" id=10]
+font_path = "res://fonts/sourcecodepro.ttf"
+
+[sub_resource type="DynamicFont" id=7]
+font_data = SubResource( 10 )
+
+[node name="MazeInput" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="Control" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Background" type="ColorRect" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TitleLabel" type="Label" parent="Control"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -242.0
+margin_top = 20.0
+margin_right = 242.0
+margin_bottom = 73.0
+custom_colors/font_color = Color( 1, 1, 0, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Maze Input"
+align = 1
+
+[node name="InputLabel" type="Label" parent="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -250.0
+margin_top = -180.0
+margin_right = 287.5
+margin_bottom = 108.25
+custom_colors/font_color = Color( 1, 1, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "Input:"
+
+[node name="InputText" type="TextEdit" parent="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -250.0
+margin_top = -120.0
+margin_right = 260.0
+margin_bottom = 180.0
+hint_tooltip = "Copy the following code as input for your algorithms."
+custom_colors/font_color_readonly = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 7 )
+readonly = true
+show_line_numbers = true
+
+[node name="ContinueButton" type="Button" parent="Control"]
+anchor_left = 0.5
+anchor_top = 0.9
+anchor_right = 0.5
+anchor_bottom = 0.9
+margin_left = -125.5
+margin_top = -30.5
+margin_right = 125.5
+margin_bottom = 30.5
+custom_colors/font_color_disabled = Color( 1, 1, 0, 1 )
+custom_colors/font_color_focus = Color( 1, 1, 0, 1 )
+custom_colors/font_color = Color( 1, 1, 0, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 0, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "Continue"
+
+[connection signal="pressed" from="Control/ContinueButton" to="." method="_on_ContinueButton_pressed"]

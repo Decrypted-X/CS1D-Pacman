@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 4, 4 )
+
+[node name="EmptyCell" type="Area2D" groups=["maze_objects"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 9 )
+disabled = true

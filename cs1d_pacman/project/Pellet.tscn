@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://art/pellet-1.png" type="Texture" id=1]
+[ext_resource path="res://gdnative/pellet.gdns" type="Script" id=2]
+[ext_resource path="res://art/pellet-0.png" type="Texture" id=3]
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "pellet",
+"speed": 2.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 4, 4 )
+
+[node name="Pellet" type="Area2D" groups=["maze_objects"]]
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 7 )
+animation = "pellet"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2( 2, 2 )
+shape = SubResource( 8 )
+disabled = true

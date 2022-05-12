@@ -1,0 +1,163 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Pacman.tscn" type="PackedScene" id=1]
+[ext_resource path="res://gdnative/main.gdns" type="Script" id=2]
+[ext_resource path="res://EmptyCell.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Wall.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Pellet.tscn" type="PackedScene" id=5]
+[ext_resource path="res://MainMenu.tscn" type="PackedScene" id=6]
+[ext_resource path="res://art/wall-0.png" type="Texture" id=7]
+[ext_resource path="res://art/wall-1.png" type="Texture" id=8]
+[ext_resource path="res://art/background.png" type="Texture" id=9]
+[ext_resource path="res://MazeSettings.tscn" type="PackedScene" id=10]
+[ext_resource path="res://MazeInput.tscn" type="PackedScene" id=11]
+[ext_resource path="res://MazeOutput.tscn" type="PackedScene" id=12]
+[ext_resource path="res://CustomMazeSettings.tscn" type="PackedScene" id=13]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 7 ) ],
+"loop": false,
+"name": "wall",
+"speed": 4.0
+} ]
+
+[sub_resource type="DynamicFontData" id=2]
+font_path = "res://fonts/crackman.ttf"
+
+[sub_resource type="DynamicFont" id=3]
+size = 30
+font_data = SubResource( 2 )
+
+[node name="Main" type="Node"]
+script = ExtResource( 2 )
+empty_cell_scene = ExtResource( 3 )
+wall_scene = ExtResource( 4 )
+pellet_scene = ExtResource( 5 )
+
+[node name="MazeOutput" parent="." instance=ExtResource( 12 )]
+
+[node name="MazeInput" parent="." instance=ExtResource( 11 )]
+
+[node name="MazeSettings" parent="." instance=ExtResource( 10 )]
+
+[node name="CustomMazeSettings" parent="." instance=ExtResource( 13 )]
+
+[node name="MainMenu" parent="." instance=ExtResource( 6 )]
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="OuterWall" type="AnimatedSprite" parent="." groups=["walls"]]
+position = Vector2( 300, 340 )
+scale = Vector2( 31.5, 31.5 )
+frames = SubResource( 1 )
+animation = "wall"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Maze" type="Node" parent="."]
+
+[node name="Background" type="Sprite" parent="Maze"]
+position = Vector2( 300, 340 )
+scale = Vector2( 30.5, 30.5 )
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Pacman" parent="." instance=ExtResource( 1 )]
+position = Vector2( 23, -8 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="StartPos" type="Node2D" parent="."]
+visible = false
+position = Vector2( 56, 96 )
+
+[node name="ColorRect" type="ColorRect" parent="StartPos"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 0.2, 0.2 )
+
+[node name="EndPos" type="Node2D" parent="."]
+visible = false
+position = Vector2( 544, 584 )
+
+[node name="ColorRect" type="ColorRect" parent="EndPos"]
+visible = false
+margin_right = 8.0
+margin_bottom = 8.0
+
+[node name="EndPos2" type="Node2D" parent="."]
+visible = false
+position = Vector2( 544, 96 )
+
+[node name="CooldownTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="MazeSettingsButton" type="Button" parent="."]
+margin_left = 16.0
+margin_top = 20.0
+margin_right = 176.0
+margin_bottom = 63.0
+custom_colors/font_color_focus = Color( 1, 1, 0, 1 )
+custom_colors/font_color = Color( 1, 1, 0, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 0, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Settings"
+
+[node name="MazeInputButton" type="Button" parent="."]
+margin_left = 192.0
+margin_top = 20.0
+margin_right = 296.0
+margin_bottom = 63.0
+custom_colors/font_color_focus = Color( 1, 1, 0, 1 )
+custom_colors/font_color = Color( 1, 1, 0, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 0, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Input"
+
+[node name="MazeOutputButton" type="Button" parent="."]
+margin_left = 312.0
+margin_top = 20.0
+margin_right = 441.0
+margin_bottom = 63.0
+custom_colors/font_color_focus = Color( 1, 1, 0, 1 )
+custom_colors/font_color = Color( 1, 1, 0, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 0, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Output"
+
+[node name="RunButton" type="Button" parent="."]
+margin_left = 456.0
+margin_top = 20.0
+margin_right = 585.0
+margin_bottom = 63.0
+custom_colors/font_color_focus = Color( 1, 1, 0, 1 )
+custom_colors/font_color = Color( 1, 1, 0, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 0, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Run"
+
+[connection signal="set_path" from="MazeOutput" to="." method="_on_MazeOutput_set_path"]
+[connection signal="open_custom" from="MazeSettings" to="." method="_on_MazeSettings_open_custom"]
+[connection signal="start_game" from="MazeSettings" to="." method="create_maze"]
+[connection signal="set_maze" from="CustomMazeSettings" to="." method="_on_CustomMazeSettings_set_maze"]
+[connection signal="target_reached" from="Pacman" to="." method="traverse_maze"]
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_CooldownTimer_timeout"]
+[connection signal="pressed" from="MazeSettingsButton" to="." method="_on_MazeSettingsButton_pressed"]
+[connection signal="pressed" from="MazeInputButton" to="." method="_on_MazeInputButton_pressed"]
+[connection signal="pressed" from="MazeOutputButton" to="." method="_on_MazeOutputButton_pressed"]
+[connection signal="pressed" from="RunButton" to="." method="_on_RunButton_pressed"]

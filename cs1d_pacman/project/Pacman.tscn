@@ -1,0 +1,61 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://art/pacman-4.png" type="Texture" id=1]
+[ext_resource path="res://art/eat.wav" type="AudioStream" id=2]
+[ext_resource path="res://art/death.wav" type="AudioStream" id=3]
+[ext_resource path="res://gdnative/pacman.gdns" type="Script" id=4]
+[ext_resource path="res://art/pacman-5.png" type="Texture" id=5]
+[ext_resource path="res://art/pacman-10.png" type="Texture" id=6]
+[ext_resource path="res://art/pacman-2.png" type="Texture" id=7]
+[ext_resource path="res://art/pacman-6.png" type="Texture" id=8]
+[ext_resource path="res://art/pacman-17.png" type="Texture" id=9]
+[ext_resource path="res://art/pacman-3.png" type="Texture" id=10]
+[ext_resource path="res://art/pacman-8.png" type="Texture" id=11]
+[ext_resource path="res://art/pacman-13.png" type="Texture" id=12]
+[ext_resource path="res://art/pacman-15.png" type="Texture" id=13]
+[ext_resource path="res://art/pacman-1.png" type="Texture" id=14]
+[ext_resource path="res://art/pacman-12.png" type="Texture" id=15]
+[ext_resource path="res://art/pacman-16.png" type="Texture" id=16]
+[ext_resource path="res://art/pacman-7.png" type="Texture" id=17]
+[ext_resource path="res://art/pacman-11.png" type="Texture" id=18]
+[ext_resource path="res://art/pacman-14.png" type="Texture" id=19]
+[ext_resource path="res://art/pacman-9.png" type="Texture" id=20]
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 14 ), ExtResource( 16 ), ExtResource( 9 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "down",
+"speed": 16.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 1 ), ExtResource( 5 ), ExtResource( 8 ), ExtResource( 17 ), ExtResource( 11 ), ExtResource( 20 ), ExtResource( 6 ), ExtResource( 18 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 19 ), ExtResource( 13 ) ],
+"loop": false,
+"name": "death",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 7 ), ExtResource( 10 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "right",
+"speed": 16.0
+} ]
+
+[sub_resource type="CircleShape2D" id=25]
+radius = 8.0
+
+[node name="Pacman" type="KinematicBody2D"]
+script = ExtResource( 4 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 5 )
+animation = "right"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 25 )
+disabled = true
+
+[node name="EatSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -5.0

@@ -1,0 +1,18 @@
+[general]
+
+singleton=false
+load_once=true
+symbol_prefix="godot_"
+reloadable=true
+
+[entry]
+
+X11.64="res://gdnative/x11/libcs1dpacman.so"
+Windows.64="res://gdnative/win64/libcs1dpacman.dll"
+OSX.64="res://gdnative/osx/libcs1dpacman.dylib"
+
+[dependencies]
+
+X11.64=[  ]
+Windows.64=[  ]
+OSX.64=[  ]
